@@ -3,6 +3,11 @@ document.getElementById('nutritionForm').addEventListener('submit', function(eve
     calculateNutrition();
 });
 
+document.getElementById('trainingForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    trackTraining();
+});
+
 function calculateNutrition() {
     const weight = document.getElementById('weight').value;
     const height = document.getElementById('height').value;
@@ -45,3 +50,56 @@ function calculateNutrition() {
         <p>Carbohydrates: ${carbs.toFixed(2)} grams</p>
     `;
 }
+
+function trackTraining() {
+    const trainingType = document.getElementById('trainingType').value;
+    const duration = document.getElementById('duration').value;
+    const intensity = document.getElementById('intensity').value;
+    const day = document.getElementById('day').value;
+
+    console.log('Training Type:', trainingType);
+    console.log('Duration:', duration);
+    console.log('Intensity:', intensity);
+    console.log('Day:', day);
+
+    if (!trainingType || !duration || !intensity || !day) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    let trainingData = localStorage.getItem('trainingData');
+    trainingData = trainingData ? JSON.parse(trainingData) : {};
+
+    if (!trainingData[day]) {
+        trainingData[day] = [];
+    }
+
+    trainingData[day].push({ trainingType, duration, intensity });
+
+    localStorage.setItem('trainingData', JSON.stringify(trainingData));
+
+    displayTrainingData();
+}
+
+function displayTrainingData() {
+    let trainingData = localStorage.getItem('trainingData');
+    trainingData = trainingData ? JSON.parse(trainingData) : {};
+
+    const trainingResultDiv = document.getElementById('trainingResult');
+    trainingResultDiv.innerHTML = '<h2>Weekly Training Activities</h2>';
+
+    for (const day in trainingData) {
+        trainingResultDiv.innerHTML += `<h3>${day}</h3>`;
+        trainingData[day].forEach((activity, index) => {
+            trainingResultDiv.innerHTML += `
+                <p>Activity ${index + 1}:</p>
+                <p>Type: ${activity.trainingType.charAt(0).toUpperCase() + activity.trainingType.slice(1)}</p>
+                <p>Duration: ${activity.duration} minutes</p>
+                <p>Intensity: ${activity.intensity.charAt(0).toUpperCase() + activity.intensity.slice(1)}</p>
+            `;
+        });
+    }
+}
+
+// Display training data on page load
+document.addEventListener('DOMContentLoaded', displayTrainingData);
