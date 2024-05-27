@@ -85,21 +85,55 @@ function displayTrainingData() {
     let trainingData = localStorage.getItem('trainingData');
     trainingData = trainingData ? JSON.parse(trainingData) : {};
 
-    const trainingResultDiv = document.getElementById('trainingResult');
-    trainingResultDiv.innerHTML = '<h2>Weekly Training Activities</h2>';
+    const trainingCalendar = document.getElementById('trainingCalendar');
+    trainingCalendar.innerHTML = '';
 
-    for (const day in trainingData) {
-        trainingResultDiv.innerHTML += `<h3>${day}</h3>`;
-        trainingData[day].forEach((activity, index) => {
-            trainingResultDiv.innerHTML += `
-                <p>Activity ${index + 1}:</p>
-                <p>Type: ${activity.trainingType.charAt(0).toUpperCase() + activity.trainingType.slice(1)}</p>
-                <p>Duration: ${activity.duration} minutes</p>
-                <p>Intensity: ${activity.intensity.charAt(0).toUpperCase() + activity.intensity.slice(1)}</p>
-            `;
-        });
-    }
+    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+    daysOfWeek.forEach(day => {
+        const dayColumn = document.createElement('div');
+        dayColumn.innerHTML = `<h3>${day}</h3>`;
+        if (trainingData[day]) {
+            trainingData[day].forEach(activity => {
+                dayColumn.innerHTML += `
+                    <p><strong>Type:</strong> ${activity.trainingType.charAt(0).toUpperCase() + activity.trainingType.slice(1)}</p>
+                    <p><strong>Duration:</strong> ${activity.duration} minutes</p>
+                    <p><strong>Intensity:</strong> ${activity.intensity.charAt(0).toUpperCase() + activity.intensity.slice(1)}</p>
+                    <hr>
+                `;
+            });
+        } else {
+            dayColumn.innerHTML += `<p>No training data</p>`;
+        }
+        trainingCalendar.appendChild(dayColumn);
+    });
 }
 
 // Display training data on page load
 document.addEventListener('DOMContentLoaded', displayTrainingData);
+
+document.getElementById('nutritionForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    calculateNutrition();
+});
+
+document.getElementById('trainingForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    trackTraining();
+});
+
+document.getElementById('foodSearchForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    searchFood();
+});
+
+function searchFood() {
+    const foodSearch = document.getElementById('foodSearch').value;
+    console.log('Searching for food:', foodSearch);
+
+    // Here you can implement the logic to search for food items and display their nutritional values
+
+    // For demonstration purposes, let's just display the search query
+    const foodSearchResults = document.getElementById('foodSearchResults');
+    foodSearchResults.innerHTML = `<p>Search results for: ${foodSearch}</p>`;
+}
