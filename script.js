@@ -133,7 +133,7 @@ function searchFood() {
 
     // Here you can implement the logic to search for food items and display their nutritional values
 
-    // For demonstration purposes, let's just display the search query
+    // For demonstration purposes, search query does not work yet
     const foodSearchResults = document.getElementById('foodSearchResults');
     foodSearchResults.innerHTML = `<p>Search results for: ${foodSearch}</p>`;
 }
