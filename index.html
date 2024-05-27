@@ -6,6 +6,8 @@
     <title>Nutrition and Training Tracker</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,11 +24,27 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
+        .calendar {
+            display: table;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .calendar div {
+            display: table-cell;
+            width: 14%;
+            border: 1px solid #ddd;
+            vertical-align: top;
+            padding: 10px;
+        }
+        .calendar div h3 {
+            margin-top: 0;
+        }
     </style>
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Nutrition Tracker</h1>
+        <h1 class="text-center mb-4">Calorie Calculator</h1>
+            <p>This is to help calculate your maintenance calories</p>
         <form id="nutritionForm">
             <div class="form-group">
                 <label for="weight">Weight (kg):</label>
@@ -51,6 +69,18 @@
             <button type="submit" class="btn btn-primary btn-block">Calculate</button>
         </form>
         <div class="result mt-4" id="result"></div>
+    </div>
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Food Tracker</h1>
+        <form id="foodSearchForm">
+            <div class="form-group">
+                <label for="foodSearch">Search Food:</label>
+                <input type="text" class="form-control" id="foodSearch" name="foodSearch" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Search</button>
+        </form>
+        <div id="foodSearchResults" class="mt-4"></div>
     </div>
 
     <div class="container">
@@ -94,7 +124,7 @@
             </div>
             <button type="submit" class="btn btn-primary btn-block">Track Training</button>
         </form>
-        <div class="result mt-4" id="trainingResult"></div>
+        <div class="calendar mt-4" id="trainingCalendar"></div>
     </div>
 
     <!-- Bootstrap and jQuery JS -->

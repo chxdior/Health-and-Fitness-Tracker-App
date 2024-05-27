@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow-x: auto; /* Horizontal scroll bar */
+    overflow-y: auto; /* Vertical scroll bar */
+}
+
+.calendar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.calendar .day {
+    width: calc(100% / 7);
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.calendar .day h3 {
+    margin-top: 0;
+}
+
+.calendar .activity {
+    margin-top: 10px;
+}
+
+.calendar .activity p {
+    margin: 0;
+    line-height: 1.5;
+}
