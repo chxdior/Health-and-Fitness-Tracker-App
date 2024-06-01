@@ -13,14 +13,16 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f0f0f0;
+            background-color: #11c7e7;
         }
+
         .container {
             max-width: 600px;
             margin: 0 auto;
+            background: rgb(34,193,195);
+            background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
+            border-radius: 8px; 
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
@@ -42,7 +44,23 @@
     </style>
 </head>
 <body>
-    <div class="container mt-5">
+    <header>
+        <h1><span class="titleBar"></span>Health and Fitness Tracker App</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#calorie-calculator">Calorie Calculator</a>
+                </li>
+                <li>
+                    <a href="#food-search-form">Food Tracker</a>
+                </li>
+                <li>
+                    <a href="#training-tracker">Training Tracker</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container mt-5" id="calorie-calculator">
         <h1 class="text-center mb-4">Calorie Calculator</h1>
             <p>This is to help calculate your maintenance calories</p>
         <form id="nutritionForm">
@@ -71,7 +89,7 @@
         <div class="result mt-4" id="result"></div>
     </div>
 
-    <div class="container mt-4">
+    <div class="container mt-4" id="food-search-form">
         <h1 class="text-center mb-4">Food Tracker</h1>
         <form id="foodSearchForm">
             <div class="form-group">
@@ -83,7 +101,7 @@
         <div id="foodSearchResults" class="mt-4"></div>
     </div>
 
-    <div class="container">
+    <div class="container" id="training-tracker">
         <h1 class="text-center mb-4">Training Tracker</h1>
         <form id="trainingForm">
             <div class="form-group">
