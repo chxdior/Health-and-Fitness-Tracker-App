@@ -137,3 +137,23 @@ function searchFood() {
     const foodSearchResults = document.getElementById('foodSearchResults');
     foodSearchResults.innerHTML = `<p>Search results for: ${foodSearch}</p>`;
 }
+
+function fetchQuote() {
+    fetch('https://api.api-ninjas.com/v1/quotes?category=inspirational', {
+        headers: { 'X-Api-Key': 'IsZVjhK+EImVLgXrV8esaQ==4LWX43kamTsZxHhI' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const quoteText = data[0].quote + " -" + data[0].author;
+        document.getElementById('quoteText').innerText = quoteText;
+    })
+    .catch(error => {
+        console.error('Error fetching the quote:', error);
+        document.getElementById('quoteText').innerText = 'Failed to fetch quote.';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    displayTrainingData();
+    fetchQuote();
+});
